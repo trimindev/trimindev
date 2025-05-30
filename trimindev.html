@@ -1,0 +1,618 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AI Agent Developer - Portfolio</title>
+
+  <!-- External Dependencies -->
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&family=Space+Grotesk:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet" />
+
+  <!-- Custom Styles -->
+  <style>
+    /* Font Classes */
+    .font-orbitron {
+      font-family: 'Orbitron', sans-serif;
+    }
+
+    .font-grotesk {
+      font-family: 'Space Grotesk', sans-serif;
+    }
+
+    /* Glass Morphism Effect */
+    .glass-card {
+      background: rgba(30, 30, 30, 0.6);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      transition: all 0.3s ease;
+    }
+
+    .glass-card:hover {
+      background: rgba(40, 40, 40, 0.7);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+
+
+    /* Smooth Scrolling */
+    html {
+      scroll-behavior: smooth;
+    }
+
+    /* Custom Animations */
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .animate-fade-in-up {
+      animation: fadeInUp 0.8s ease-out;
+    }
+  </style>
+</head>
+
+<body class="bg-black m-0 p-0 font-grotesk overflow-x-hidden">
+
+  <!-- ============================================
+       NAVIGATION BAR
+       Fixed navigation with mobile hamburger menu
+       ============================================ -->
+  <nav
+    class="fixed top-0 left-0 right-0 bg-black bg-opacity-70 backdrop-blur-sm flex items-center justify-between px-6 py-3 z-30 transition-all duration-300">
+    <!-- Logo/Brand -->
+    <div class="text-white font-orbitron text-xl font-bold tracking-wide">
+      trimindev
+    </div>
+
+    <!-- Desktop Navigation Menu -->
+    <ul class="hidden md:flex space-x-8 text-white font-semibold">
+      <li><a href="#about" class="hover:text-zinc-400 transition-colors duration-300">About</a></li>
+      <li><a href="#project" class="hover:text-zinc-400 transition-colors duration-300">Projects</a></li>
+      <li><a href="#contact" class="hover:text-zinc-400 transition-colors duration-300">Let's Talk</a></li>
+    </ul>
+
+    <!-- Mobile Menu Button -->
+    <button id="menu-btn" aria-label="Toggle Mobile Menu"
+      class="md:hidden text-white text-3xl font-bold focus:outline-none hover:text-zinc-400 transition-colors">
+      &#8942;
+    </button>
+  </nav>
+
+  <!-- ============================================
+       MOBILE SIDEBAR MENU
+       Slide-in menu for mobile devices
+       ============================================ -->
+  <div id="mobile-menu"
+    class="fixed top-0 right-0 h-full w-64 max-w-xs bg-gradient-to-br from-zinc-900/90 to-black/90 backdrop-blur-md text-white p-8 shadow-2xl transform translate-x-full transition-transform duration-300 z-40">
+
+    <!-- Close Button -->
+    <button id="menu-close-btn"
+      class="absolute top-5 right-5 text-4xl font-bold text-zinc-300 hover:text-white transition-colors duration-300"
+      aria-label="Close Menu">
+      &times;
+    </button>
+
+    <!-- Mobile Navigation Links -->
+    <ul class="flex flex-col space-y-8 mt-16 text-xl font-semibold tracking-wide">
+      <li><a href="#about" class="hover:text-zinc-400 transition-colors duration-300" onclick="closeMenu()">About</a>
+      </li>
+      <li><a href="#project" class="hover:text-zinc-400 transition-colors duration-300"
+          onclick="closeMenu()">Projects</a></li>
+      <li><a href="#contact" class="hover:text-zinc-400 transition-colors duration-300" onclick="closeMenu()">Let's
+          Talk</a></li>
+    </ul>
+  </div>
+
+  <!-- ============================================
+       HERO SECTION
+       Main landing area with title and character
+       ============================================ -->
+  <section class="h-screen bg-gradient-to-b from-black to-zinc-800 relative overflow-hidden pt-20">
+
+    <!-- Main Title -->
+    <div class="absolute top-[18%] md:top-[25%] left-0 right-0 z-0 text-center px-4 animate-fade-in-up">
+      <h1
+        class="text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-extrabold text-zinc-300 font-orbitron tracking-tight">
+        AI Agent Developer
+      </h1>
+      <!-- Mobile Subtitle -->
+      <p class="block md:hidden text-zinc-400 text-base mt-4 max-w-xs mx-auto font-grotesk leading-relaxed">
+        Intelligent systems that think and act for your business.
+      </p>
+    </div>
+
+    <!-- Character Image -->
+    <img src="images/character.png" alt="AI Developer Avatar"
+      class="absolute bottom-0 left-1/2 -translate-x-1/2 h-[70vh] object-contain object-bottom z-10" />
+
+    <!-- Desktop Info Card -->
+    <div
+      class="hidden md:block absolute bottom-6 left-6 rounded-xl p-4 text-white w-80 shadow-xl glass-card z-20 animate-fade-in-up">
+      <h2 class="text-lg font-semibold mb-2 font-orbitron">Let Me Elevate Your Business</h2>
+      <p class="text-sm text-zinc-200 leading-relaxed">
+        I design intelligent AI Agents that streamline your operations, cut down wasted time, and open the door to
+        scalable, smarter growth.
+      </p>
+    </div>
+
+    <!-- Social Media Icons (Desktop) -->
+    <div class="hidden md:flex flex-col items-center gap-4 absolute bottom-10 right-6 z-20">
+      <a href="https://www.youtube.com/@danmartell" target="_blank"
+        class="bg-zinc-900 p-3 rounded-full shadow-md hover:bg-zinc-800 transition-all duration-300 hover:scale-110"
+        aria-label="YouTube Channel">
+        <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24">
+          <path
+            d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
+        </svg>
+      </a>
+      <a href="https://github.com/trimindev" target="_blank"
+        class="bg-zinc-900 p-3 rounded-full shadow-md hover:bg-zinc-800 transition-all duration-300 hover:scale-110"
+        aria-label="GitHub Profile">
+        <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24">
+          <path
+            d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z" />
+        </svg>
+      </a>
+      <a href="#" target="_blank"
+        class="bg-zinc-900 p-3 rounded-full shadow-md hover:bg-zinc-800 transition-all duration-300 hover:scale-110"
+        aria-label="Linkedin Profile">
+        <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24">
+          <path
+            d="M19 0H5a5 5 0 00-5 5v14a5 5 0 005 5h14a5 5 0 005-5V5a5 5 0 00-5-5zM8.5 19H5.5V9h3v10zM7 7.5C6.2 7.5 5.5 6.8 5.5 6s.7-1.5 1.5-1.5S8.5 5.2 8.5 6 7.8 7.5 7 7.5zM19 19h-3v-5.5c0-1.4-.6-2-1.5-2-1 0-1.5.8-1.5 2V19h-3V9h3v1.2c.5-.8 1.6-1.4 2.8-1.4 2.4 0 3.2 1.6 3.2 3.7V19z" />
+        </svg>
+      </a>
+    </div>
+  </section>
+
+  <!-- ============================================
+       VIDEO SHOWCASE
+       Embedded YouTube video
+       ============================================ -->
+  <section class="py-6 md:py-16 px-4 md:px-16 bg-black">
+    <div class="max-w-6xl mx-auto">
+      <div class="rounded-xl overflow-hidden aspect-video shadow-2xl border border-zinc-800">
+        <iframe width="560" height="315" src="https://www.youtube.com/embed/K4s6Cgicw_A?si=0WZVdM_ibbFqvHoC"
+          class="w-full h-full" title="AI Agent Development Showcase" frameborder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          referrerpolicy="strict-origin-when-cross-origin" allowfullscreen>
+        </iframe>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section Divider -->
+  <hr class="border-zinc-800 border-[0.5px] mx-4 md:mx-16" />
+
+  <!-- ============================================
+       ABOUT SECTION
+       Personal introduction and skills showcase
+       ============================================ -->
+  <section id="about" class="bg-black text-white py-16 px-4 md:px-16">
+    <div class="max-w-5xl mx-auto space-y-12">
+
+      <!-- Section Header -->
+      <div class="text-center space-y-4">
+        <h2 class="text-3xl md:text-4xl font-bold font-orbitron">About Me</h2>
+        <p class="text-zinc-300 text-lg leading-relaxed max-w-3xl mx-auto">
+          I'm a passionate AI Agent Developer specializing in crafting intelligent, efficient systems that transform how
+          businesses operate and scale.
+        </p>
+      </div>
+
+      <!-- Skills Grid -->
+      <div class="grid md:grid-cols-3 gap-6">
+        <!-- Skill Card 1 -->
+        <div class="glass-card p-6 rounded-xl shadow-md group">
+          <h3 class="text-xl font-semibold mb-3 font-orbitron group-hover:text-zinc-300 transition-colors">
+            AI Agent Architecture
+          </h3>
+          <p class="text-sm text-zinc-200 leading-relaxed">
+            Designing autonomous agents using state-of-the-art frameworks and LLMs for maximum efficiency.
+          </p>
+        </div>
+
+        <!-- Skill Card 2 -->
+        <div class="glass-card p-6 rounded-xl shadow-md group">
+          <h3 class="text-xl font-semibold mb-3 font-orbitron group-hover:text-zinc-300 transition-colors">
+            Automation & Integration
+          </h3>
+          <p class="text-sm text-zinc-200 leading-relaxed">
+            Seamlessly connecting your workflows, APIs, and tools into a unified intelligent system.
+          </p>
+        </div>
+
+        <!-- Skill Card 3 -->
+        <div class="glass-card p-6 rounded-xl shadow-md group">
+          <h3 class="text-xl font-semibold mb-3 font-orbitron group-hover:text-zinc-300 transition-colors">
+            Scalable Solutions
+          </h3>
+          <p class="text-sm text-zinc-200 leading-relaxed">
+            Building with growth in mind — reliable, fast, and production-ready agents that evolve with your needs.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section Divider -->
+  <hr class="border-zinc-800 border-[0.5px] mx-4 md:mx-16" />
+
+  <!-- ============================================
+       PROJECTS SECTION
+       Portfolio showcase with project cards
+       ============================================ -->
+  <section id="project" class="bg-gradient-to-b from-black via-zinc-900 to-black text-white py-16 px-4 md:px-16">
+    <div class="max-w-6xl mx-auto space-y-16">
+
+      <!-- Section Header -->
+      <div class="text-center">
+        <h2 class="text-4xl md:text-5xl font-bold font-orbitron mb-4">Featured Projects</h2>
+        <p class="text-zinc-400 text-lg max-w-2xl mx-auto">
+          Explore my latest work in AI agent development and automation solutions.
+        </p>
+      </div>
+
+      <!-- Projects Grid -->
+      <div class="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+
+        <!-- Project Card Template (Repeated 4 times) -->
+        <div class="glass-card rounded-xl overflow-hidden shadow-md group hover:shadow-xl transition-all duration-300">
+          <div class="relative overflow-hidden">
+            <img src="images/coming-soon.jpg" alt="Upcoming AI Project"
+              class="w-full h-48 object-cover opacity-80 group-hover:opacity-100 group-hover:scale-105 transition-all duration-300" />
+            <div
+              class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+            </div>
+          </div>
+          <div class="p-6">
+            <h3 class="text-xl font-semibold mb-2 font-orbitron">Coming Soon</h3>
+            <p class="text-sm text-zinc-300 leading-relaxed">
+              Exciting new AI agent project is currently in development. Stay tuned for updates!
+            </p>
+          </div>
+        </div>
+
+        <!-- Duplicate project cards -->
+        <div class="glass-card rounded-xl overflow-hidden shadow-md group hover:shadow-xl transition-all duration-300">
+          <div class="relative overflow-hidden">
+            <img src="images/coming-soon.jpg" alt="Upcoming AI Project"
+              class="w-full h-48 object-cover opacity-80 group-hover:opacity-100 group-hover:scale-105 transition-all duration-300" />
+            <div
+              class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+            </div>
+          </div>
+          <div class="p-6">
+            <h3 class="text-xl font-semibold mb-2 font-orbitron">Coming Soon</h3>
+            <p class="text-sm text-zinc-300 leading-relaxed">
+              Exciting new AI agent project is currently in development. Stay tuned for updates!
+            </p>
+          </div>
+        </div>
+
+        <div class="glass-card rounded-xl overflow-hidden shadow-md group hover:shadow-xl transition-all duration-300">
+          <div class="relative overflow-hidden">
+            <img src="images/coming-soon.jpg" alt="Upcoming AI Project"
+              class="w-full h-48 object-cover opacity-80 group-hover:opacity-100 group-hover:scale-105 transition-all duration-300" />
+            <div
+              class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+            </div>
+          </div>
+          <div class="p-6">
+            <h3 class="text-xl font-semibold mb-2 font-orbitron">Coming Soon</h3>
+            <p class="text-sm text-zinc-300 leading-relaxed">
+              Exciting new AI agent project is currently in development. Stay tuned for updates!
+            </p>
+          </div>
+        </div>
+
+        <div class="glass-card rounded-xl overflow-hidden shadow-md group hover:shadow-xl transition-all duration-300">
+          <div class="relative overflow-hidden">
+            <img src="images/coming-soon.jpg" alt="Upcoming AI Project"
+              class="w-full h-48 object-cover opacity-80 group-hover:opacity-100 group-hover:scale-105 transition-all duration-300" />
+            <div
+              class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+            </div>
+          </div>
+          <div class="p-6">
+            <h3 class="text-xl font-semibold mb-2 font-orbitron">Coming Soon</h3>
+            <p class="text-sm text-zinc-300 leading-relaxed">
+              Exciting new AI agent project is currently in development. Stay tuned for updates!
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================
+       CONTACT SECTION
+       Contact form and social media links
+       ============================================ -->
+  <section id="contact" class="bg-gradient-to-b from-zinc-950 to-black text-white py-16 px-4 md:px-16">
+    <!-- Header Section -->
+    <div class="text-center mb-16">
+      <h2 class="text-4xl md:text-5xl font-bold font-orbitron mb-4">Contact Me</h2>
+      <p class="text-zinc-400 text-lg max-w-2xl mx-auto leading-relaxed">
+        Start the conversation to establish good relationship and business.
+      </p>
+    </div>
+
+    <!-- Main Content Grid -->
+    <div class="max-w-7xl mx-auto grid lg:grid-cols-2 gap-12 lg:gap-16">
+
+      <!-- Left Column - Contact Information -->
+      <div class="space-y-12">
+        <!-- GET IN TOUCH Section -->
+        <div>
+          <h3 class="text-sm font-semibold uppercase tracking-wide mb-4">GET IN TOUCH</h3>
+          <h4 class="text-3xl md:text-4xl font-bold mb-6 leading-tight">
+            Seamless Communication, Global Impact.
+          </h4>
+          <p class="text-zinc-400 leading-relaxed mb-8">
+            Let's discuss how intelligent
+            automation can elevate your operations and drive sustainable growth.
+          </p>
+        </div>
+
+        <!-- Contact Details Grid -->
+        <div class="grid md:grid-cols-2 gap-6">
+
+          <!-- Email Support -->
+          <div class="flex items-start gap-4">
+            <div class="bg-zinc-800 rounded-full p-3 flex-shrink-0">
+              <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 20 20">
+                <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z" />
+                <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z" />
+              </svg>
+            </div>
+            <div>
+              <h5 class="text-white font-semibold mb-1">EMAIL</h5>
+              <p class="text-zinc-400 text-sm">
+                <a href="mailto:hello@trimindev.com" class="hover: transition-colors">hello@trimindev.com</a><br>
+              </p>
+            </div>
+          </div>
+
+          <!-- Let's Talk -->
+          <div class="flex items-start gap-4">
+            <div class="bg-zinc-800 rounded-full p-3 flex-shrink-0">
+              <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 20 20">
+                <path
+                  d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z" />
+              </svg>
+            </div>
+            <div>
+              <h5 class="text-white font-semibold mb-1">Phone</h5>
+              <p class="text-zinc-400 text-sm">
+                <a href="tel:+84901234567" class="hover: transition-colors">+84 90 123
+                  4567</a><br>
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Social Media -->
+        <div>
+          <h5 class="text-white font-semibold mb-4">Follow my social media</h5>
+          <div class="flex gap-4">
+            <a href="https://github.com/trimindev" target="_blank"
+              class="bg-zinc-800 hover:bg-purple-600 p-3 rounded-full transition-all duration-300 group">
+              <svg class="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 24 24">
+                <path
+                  d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
+              </svg>
+            </a>
+            <a href="https://www.youtube.com/@danmartell" target="_blank"
+              class="bg-zinc-800 hover:bg-purple-600 p-3 rounded-full transition-all duration-300 group">
+              <svg class="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 24 24">
+                <path
+                  d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z" />
+              </svg>
+            </a>
+            <a href="#" target="_blank"
+              class="bg-zinc-800 hover:bg-purple-600 p-3 rounded-full transition-all duration-300 group">
+              <svg class="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 24 24">
+                <path
+                  d="M19 0H5a5 5 0 00-5 5v14a5 5 0 005 5h14a5 5 0 005-5V5a5 5 0 00-5-5zM8.5 19H5.5V9h3v10zM7 7.5C6.2 7.5 5.5 6.8 5.5 6s.7-1.5 1.5-1.5S8.5 5.2 8.5 6 7.8 7.5 7 7.5zM19 19h-3v-5.5c0-1.4-.6-2-1.5-2-1 0-1.5.8-1.5 2V19h-3V9h3v1.2c.5-.8 1.6-1.4 2.8-1.4 2.4 0 3.2 1.6 3.2 3.7V19z" />
+              </svg>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right Column - Contact Form -->
+      <div class="bg-zinc-900/50 backdrop-blur-sm rounded-2xl p-8 border border-zinc-800">
+        <h3 class="text-2xl font-bold mb-2">Send me a message</h3>
+        <p class="text-zinc-400 mb-8">
+          Please feel free to send me any questions, feedback or suggestions you might have.
+        </p>
+
+        <form class="space-y-6" id="contact-form">
+          <!-- Name row -->
+          <div>
+            <label class="block text-sm font-medium text-zinc-300 mb-2">Name</label>
+            <input type="text" name="name" placeholder="Name" required
+              class="w-full px-4 py-3 rounded-xl bg-zinc-800 text-white border border-zinc-700 focus:outline-none focus:ring-2 focus:ring-purple-400 focus:border-transparent transition-all duration-300 placeholder-zinc-500" />
+          </div>
+
+          <!-- Email row -->
+          <div>
+            <label class="block text-sm font-medium text-zinc-300 mb-2">Email</label>
+            <input type="email" name="email" placeholder="Email" required
+              class="w-full px-4 py-3 rounded-xl bg-zinc-800 text-white border border-zinc-700 focus:outline-none focus:ring-2 focus:ring-purple-400 focus:border-transparent transition-all duration-300 placeholder-zinc-500" />
+          </div>
+
+
+
+          <!-- Message -->
+          <div>
+            <label class="block text-sm font-medium text-zinc-300 mb-2">Message</label>
+            <textarea name="message" placeholder="Message" rows="4" required
+              class="w-full px-4 py-3 rounded-xl bg-zinc-800 text-white border border-zinc-700 focus:outline-none focus:ring-2 focus:ring-purple-400 focus:border-transparent transition-all duration-300 placeholder-zinc-500 resize-none"></textarea>
+          </div>
+
+          <!-- Submit Button -->
+          <button type="submit"
+            class="w-full bg-gradient-to-r from-white to-zinc-500 text-black font-semibold px-8 py-4 rounded-xl hover:from-purple-400 hover:to-white transition-all duration-300 transform hover:scale-[1.02] shadow-lg">
+            SEND MESSAGE
+          </button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================
+       JAVASCRIPT FUNCTIONALITY
+       Mobile menu controls and form handling
+       ============================================ -->
+  <script>
+    // ========================================
+    // MOBILE MENU FUNCTIONALITY
+    // ========================================
+
+    // Get DOM elements
+    const menuBtn = document.getElementById('menu-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+    const menuCloseBtn = document.getElementById('menu-close-btn');
+
+    /**
+     * Opens the mobile sidebar menu
+     */
+    function openMenu() {
+      mobileMenu.classList.remove('translate-x-full');
+      document.body.style.overflow = 'hidden'; // Prevent background scrolling
+    }
+
+    /**
+     * Closes the mobile sidebar menu
+     */
+    function closeMenu() {
+      mobileMenu.classList.add('translate-x-full');
+      document.body.style.overflow = 'auto'; // Restore scrolling
+    }
+
+    // Event listeners for menu controls
+    menuBtn.addEventListener('click', openMenu);
+    menuCloseBtn.addEventListener('click', closeMenu);
+
+    // Close menu when clicking outside
+    mobileMenu.addEventListener('click', (e) => {
+      if (e.target === mobileMenu) {
+        closeMenu();
+      }
+    });
+
+    // Close menu on escape key
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && !mobileMenu.classList.contains('translate-x-full')) {
+        closeMenu();
+      }
+    });
+
+    // ========================================
+    // CONTACT FORM HANDLING
+    // ========================================
+
+    const contactForm = document.getElementById('contact-form');
+
+    /**
+     * Handles contact form submission
+     * @param {Event} e - Form submission event
+     */
+    contactForm.addEventListener('submit', function (e) {
+      e.preventDefault();
+
+      // Get form data
+      const formData = new FormData(this);
+      const name = formData.get('name');
+      const email = formData.get('email');
+      const message = formData.get('message');
+
+      // Basic validation
+      if (!name || !email || !message) {
+        alert('Please fill in all fields.');
+        return;
+      }
+
+      // Here you would typically send the data to your backend
+      // For now, we'll just show a success message
+      alert('Thank you for your message! I\'ll get back to you soon.');
+
+      // Reset form
+      this.reset();
+    });
+
+    // ========================================
+    // SMOOTH SCROLLING FOR NAVIGATION LINKS
+    // ========================================
+
+    /**
+     * Adds smooth scrolling behavior to navigation links
+     */
+    function initSmoothScrolling() {
+      const navLinks = document.querySelectorAll('a[href^="#"]');
+
+      navLinks.forEach(link => {
+        link.addEventListener('click', function (e) {
+          e.preventDefault();
+
+          const targetId = this.getAttribute('href');
+          const targetSection = document.querySelector(targetId);
+
+          if (targetSection) {
+            const offsetTop = targetSection.offsetTop - 80; // Account for fixed navbar
+
+            window.scrollTo({
+              top: offsetTop,
+              behavior: 'smooth'
+            });
+
+            // Close mobile menu if open
+            if (!mobileMenu.classList.contains('translate-x-full')) {
+              closeMenu();
+            }
+          }
+        });
+      });
+    }
+
+    // Initialize smooth scrolling when DOM is loaded
+    document.addEventListener('DOMContentLoaded', initSmoothScrolling);
+
+    // ========================================
+    // NAVBAR BACKGROUND ON SCROLL
+    // ========================================
+
+    /**
+     * Changes navbar background opacity based on scroll position
+     */
+    function handleNavbarScroll() {
+      const navbar = document.querySelector('nav');
+      const scrollY = window.scrollY;
+
+      if (scrollY > 50) {
+        navbar.classList.add('bg-opacity-90');
+        navbar.classList.remove('bg-opacity-70');
+      } else {
+        navbar.classList.add('bg-opacity-70');
+        navbar.classList.remove('bg-opacity-90');
+      }
+    }
+
+    // Add scroll event listener for navbar
+    window.addEventListener('scroll', handleNavbarScroll);
+  </script>
+</body>
+
+</html>
